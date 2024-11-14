@@ -1,0 +1,58 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    margin: 0;
+    background-color: #ffffff;
+    overflow: hidden; /* ป้องกันการเลื่อนหน้า */
+}
+.slideshow-container {
+    position: relative;
+    max-width: 600px; /* ขนาดสูงสุดของสไลด์โชว์ */
+}
+.slide {
+    display: none;
+    text-align: center;
+}
+.slide img {
+    width: 100%;
+    height: 300px; /* กำหนดความสูงให้รูปภาพเท่ากัน */
+    object-fit: cover; /* ตัดส่วนเกินและรักษาสัดส่วน */
+    border-radius: 10px;
+}
+.prev, .next {
+    cursor: pointer;
+    position: fixed; /* ให้ปุ่มอยู่คงที่ */
+    top: 30%; /* อยู่กลางหน้าจอในแนวตั้ง */
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    user-select: none;
+    background-color: rgba(0,0,0,0.5); /* พื้นหลังโปร่งแสง */
+    border-radius: 50%; /* ทำให้เป็นวงกลม */
+}
+.prev {
+    left: 30px; /* ระยะห่างจากขอบซ้าย */
+}
+.next {
+    right: 30px; /* ระยะห่างจากขอบขวา */
+}
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+.love{
+    position: absolute;
+    top: 10px; 
+    left: 10px; 
+    width: 50px; 
+    height: auto; 
+    
+}
+h1{
+    color: #008cff;
+}

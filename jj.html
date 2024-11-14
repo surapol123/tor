@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรแกรมคำนวณเกรดและเกรดเฉลี่ย</title>
+    <style>
+        /* CSS ตกแต่ง */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        #grades {
+            max-width: 500px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .subject {
+            
+            margin-bottom: 10px;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        #averageGrade {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="grades">
+        <h1>โปรแกรมคำนวณเกรดและเกรดเฉลี่ย</h1>
+
+        <!-- พื้นที่สำหรับแสดงช่องป้อนคะแนน -->
+        <div id="inputs"></div>
+
+        <button class="btn" onclick="addSubject()">เพิ่มวิชา</button>
+        <button class="btn" onclick="calculateGrades()">คำนวณเกรด</button>
+        <p id="averageGrade"></p>
+    </div>
+
+    <script>
+        function addSubject() {
+            var inputsDiv = document.getElementById('inputs');
+            var newDiv = document.createElement('div');
+            newDiv.innerHTML = `
+                <div>
+                    <label for="subject${inputsDiv.childElementCount + 1}">วิชาที่ ${inputsDiv.childElementCount + 1}: </label>
+                    <input type="number" id="subject${inputsDiv.childElementCount + 1}" class="subject" placeholder="คะแนน">
+                    <input type="number" id="credit${inputsDiv.childElementCount + 1}" class="subject" placeholder="หน่วยกิต">
+                </div>
+            `;
+            inputsDiv.appendChild(newDiv);
+        }
+
+        function calculateGrades() {
+            var subjects = document.getElementsByClassName('subject');
+            var totalScore = 0;
+            var totalCredit = 0;
+
+            for (var i = 0; i < subjects.length; i += 2) {
+                var score = parseFloat(subjects[i].value);
+                var credit = parseFloat(subjects[i + 1].value);
+
+                if (isNaN(score) || score < 0 || score > 100 || isNaN(credit) || credit <= 0) {
+                    alert("กรุณาป้อนคะแนนและหน่วยกิตที่ถูกต้อง");
+                    return;
+                }
+
+                totalScore += score;
+                totalCredit += credit;
+            }
+
+            var averageGrade = totalScore / totalCredit;
+            document.getElementById('averageGrade').innerHTML = "เกรดเฉลี่ย: " + averageGrade.toFixed(2);
+        }
+    </script>
+</body>
+</html>

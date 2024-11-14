@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายละเอียดห้องพักและการจอง</title>
+    <link rel="stylesheet" href="body_room.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h1, h4 {
+            color: #333;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            max-width: 700px;
+            margin: 20px auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .slide img {
+            width: 100%;
+            height: auto;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 2em;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            transition: 0.3s;
+        }
+
+        .prev { left: 10%; background-color: rgba(0, 0, 0, 0.5); }
+        .next { right: 10%; background-color: rgba(0, 0, 0, 0.5); }
+
+        .prev:hover, .next:hover { background-color: rgba(0, 0, 0, 0.8); }
+
+        .hotel-info {
+            text-align: left;
+            font-size: 1.1em;
+            margin: 20px 0;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .book-button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .book-button:hover { background-color: #45a049; }
+
+        @media (max-width: 600px) {
+            .prev, .next { font-size: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="admin.html">
+           
+        </a>
+
+        <h1>ห้องบรรทมใหญ่</h1>
+
+        <!-- รูปภาพสไลด์ -->
+        <div class="slide">
+            <img src="b1.jpg" alt="รูปภาพที่ 1">
+        </div>
+        <div class="slide">
+            <img src="b2.jpg" alt="รูปภาพที่ 2">
+        </div>
+        <div class="slide">
+            <img src="b3.jpeg" alt="รูปภาพที่ 3">
+        </div>
+        <div class="slide">
+            <img src="b4.jpg" alt="รูปภาพที่ 4">
+        </div>
+        <div class="slide">
+            <img src="b5.jpg" alt="รูปภาพที่ 5">
+        </div>
+
+        <div class="hotel-info">
+            <h4>รายละเอียดโรงแรม</h4>
+            <p>Arbors House ตั้งอยู่ในย่านนิมมานเหมินท์ที่คึกคัก พร้อมมุมระเบียงดาดฟ้าที่สามารถชมทิวทัศน์ของเมืองได้อย่างงดงาม โรงแรมมีห้องพักหรูหราเหมาะสำหรับการพักผ่อนของนักเดินทาง รวมทั้งสิ่งอำนวยความสะดวกเช่น สระว่ายน้ำส่วนตัว ห้องอาหาร บริการสปา และฟิตเนส</p>
+            <p>ราคาเริ่มต้น: ฿3,500 ต่อคืน</p>
+            <p>บริการเสริม: อาหารเช้า Wi-Fi ฟรี และการเช็คเอาท์เลทตามความสะดวก</p>
+            <p>หมายเหตุ: การจองขั้นต่ำ 2 คืนในช่วงวันหยุดสุดสัปดาห์</p>
+        </div>
+
+        <!-- ปุ่มก่อนหน้าและถัดไป -->
+        <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+        <a class="next" onclick="changeSlide(1)">&#10095;</a>
+
+        <!-- ปุ่มยืนยันการจอง -->
+        <button class="book-button" onclick="window.location.href='end.php'">ยืนยันการจอง</button>
+    </div>
+
+    <script>
+        let slideIndex = 0;
+        showSlide(slideIndex);
+
+        function changeSlide(n) {
+            showSlide(slideIndex += n);
+        }
+
+        function showSlide(n) {
+            const slides = document.getElementsByClassName("slide");
+            if (n >= slides.length) { slideIndex = 0; }
+            if (n < 0) { slideIndex = slides.length - 1; }
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex].style.display = "block";
+        }
+
+        // Display the first slide on load
+        window.onload = function() {
+            showSlide(slideIndex);
+        };
+    </script>
+</body>
+</html>
